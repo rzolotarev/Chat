@@ -1,0 +1,14 @@
+<div>
+    <div *ngFor="let currentMessage of messages | async">
+        <b>{{ currentMessage.author }}</b>: {{ currentMessage.messageText }}            
+        <app-command type="{{currentMessage.type}}" [commandData]="currentMessage.data"></app-command>
+    </div>
+    <div class="input-group mb-3">
+        <input type="text"  [(ngModel)]="messageText" class="form-control" placeholder="Type a message" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                      
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="sendMessage()">Send Message</button>
+          <button class="btn btn-outline-secondary" type="button" (click)="sendCommand()">Send Command</button>
+        </div>
+    </div>          
+</div>
