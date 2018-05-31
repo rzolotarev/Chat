@@ -12,6 +12,10 @@ import { UnknownComponent } from './commands/unknown/unknown.component';
 import { DateComponent } from './commands/date/date.component';
 import { CompleteComponent } from './commands/complete/complete.component';
 import { RandomCommandComponent } from './commands/random-command/random-command.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './app-routing.module';
+import { AuthGuard } from './authentication/auth.guard';
+import { LoginComponent } from './authentication/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +27,12 @@ import { RandomCommandComponent } from './commands/random-command/random-command
     UnknownComponent,
     DateComponent,
     CompleteComponent,
-    RandomCommandComponent
+    RandomCommandComponent,
+    LoginComponent
   ],
   imports: [
-    BrowserModule, FormsModule, NgReduxModule
+    BrowserModule, FormsModule, NgReduxModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   entryComponents: [
