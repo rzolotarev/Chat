@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-complete',
@@ -6,13 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./complete.component.css']
 })
 export class CompleteComponent implements OnInit {
+    private title: string = 'Do tou want to close the conversation';
+    private answers: Array<string> = [];
 
-  constructor() { }
+    constructor(private messageService: MessageService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  setData(complete: any){
+    setData(complete: Array<string>){
+      this.answers = complete;  
+    }
 
-  }
+    sendResponse(value: string) {
+      this.messageService.sendMessage(value);  
+    }
 }

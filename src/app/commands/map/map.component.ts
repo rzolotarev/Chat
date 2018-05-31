@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Map } from '../../models/map';
 import { } from '@types/googlemaps';
 
@@ -8,15 +8,20 @@ import { } from '@types/googlemaps';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  
+    private title: string = "User location";
     @ViewChild('gmap') gmapElement: any;
-    map: google.maps.Map;
-    mapData: Map = null;    
+    private map: google.maps.Map;
+    private mapData: Map = null;    
 
     constructor() {
     }    
 
     ngOnInit() {               
+      
+    }
+
+    setData(data: Map) {      
+      this.mapData = data; 
       var mapProp = {
         center: new google.maps.LatLng(this.mapData.lat, this.mapData.lng),
         zoom: 15,
@@ -27,10 +32,6 @@ export class MapComponent implements OnInit {
           position: this.mapData,
           map: this.map,
           title: 'You are here'
-        });
-    }
-
-    setData(data: Map) {      
-      this.mapData = data;      
+        });     
     }
 }

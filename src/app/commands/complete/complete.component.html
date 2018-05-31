@@ -1,3 +1,5 @@
-<p>
-  complete works!
-</p>
+<h4>{{title}}</h4>
+<span *ngFor="let answer of answers">
+  <input type="button" class="btn btn-outline-dark" [value]="answer" 
+         (click)="sendResponse($event.target.value)">
+</span>
