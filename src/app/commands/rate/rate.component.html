@@ -1,3 +1,7 @@
-<p>
-  rate works!
-</p>
+<h4>{{title}}</h4>
+<span *ngFor='let star of stars'>    
+  <i style="font-size:36px" [ngClass]="{'fa fa-star' : isGreater(chosenAssesment, star),
+                'fa fa-star-o' : !isGreater(chosenAssesment, star)}"                
+        (click)="setAssesment(star)">
+  </i>
+</span>

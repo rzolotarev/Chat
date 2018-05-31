@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-date',
@@ -7,12 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DateComponent implements OnInit {
 
-  constructor() { }
+    private title : string = 'Please pick a day';
+    private months: Array<string> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    private date: Date = null;
+    private dayButtons : Array<string> = [];
 
-  ngOnInit() {
-  }
+    constructor(private messageService : MessageService) { }
 
-  setData(data: any){
+    ngOnInit() {
 
-  }
+    }
+
+    setData(data: string){
+      this.date = new Date(data);
+      let startDay = this.date.getDay() - 1;    
+
+      if(startDay >= this.months.length)
+        startDay = 0;
+      
+      for(let i = 0; i < this.months.length; i++){        
+        let name = this.months[(startDay + i)%this.months.length];
+        this.dayButtons.push(name);
+      }      
+    }
+
+    sendResponse(chosenDay: string){
+      this.messageService.sendMessage(chosenDay);
+    }
 }
