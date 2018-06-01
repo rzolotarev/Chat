@@ -1,5 +1,5 @@
 import { Message } from "src/app/models/message";
-import { ADD_MESSAGE, REMOVE_MESSAGE, ADD_COMMAND } from './actions/actions';
+import { ADD_MESSAGE, REMOVE_MESSAGE, ADD_COMMAND, AUTHENTICATE } from './actions/actions';
 
 //TODO: I use IAppState. Of course on the beginig level I can avoid using redux, 
 //but when the chat getting larger and I will use a lot of views which are independent of each other and have access to the same data, 
@@ -9,12 +9,14 @@ export interface IChatState {
     messages: Array<Message>;
     currentMessage: Message;
     author: string;
+    isAuthenticated: boolean;
 }
 
 export const INIT_STATE : IChatState = {
     messages: [],
     currentMessage: null,
-    author: "Roman"
+    author: '',
+    isAuthenticated: false
 };
 
 export function rootReducer(state: IChatState, action) : IChatState {
@@ -27,12 +29,14 @@ export function rootReducer(state: IChatState, action) : IChatState {
         case REMOVE_MESSAGE: 
             return Object.assign({}, state, {
                 messages: state.messages.filter(m => m.id != action.id)
-            });
+            }, { currentMessage: action.message});
         case ADD_COMMAND: 
             action.message.id = state.messages.length + 1;
             return Object.assign({}, state, {
                 messages: state.messages.concat(Object.assign({}, action.message))
-            });        
+            }, { currentMessage: Object.assign({}, action.message)});
+        case AUTHENTICATE: 
+            return Object.assign({}, state, { author: action.author, isAuthenticated: true });       
     }
     return state;
 }

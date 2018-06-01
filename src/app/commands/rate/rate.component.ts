@@ -12,6 +12,7 @@ export class RateComponent implements OnInit {
       private rate: Array<number> = [];
       private stars: Array<number> = [];
       private chosenAssesment: number = 0;
+      y: number = 2;
 
       constructor(private messageService: MessageService) { }
 

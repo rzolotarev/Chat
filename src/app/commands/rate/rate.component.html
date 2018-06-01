@@ -1,7 +1,11 @@
 <h4>{{title}}</h4>
-<span *ngFor='let star of stars'>    
-  <i style="font-size:36px" [ngClass]="{'fa fa-star' : isGreater(chosenAssesment, star),
-                'fa fa-star-o' : !isGreater(chosenAssesment, star)}"                
-        (click)="setAssesment(star)">
-  </i>
-</span>
+
+<div>
+  <rating [max]="5" [(ngModel)]="y" [customTemplate]="customeTemplate"></rating>
+  <b>(<i>Rate:</i> {{y}})</b>
+  <ng-template #customeTemplate let-i="index" let-v="value">
+    <button type="btn" class="btn btn-{{i < v ? 'warning' : 'default'}}" (click)='setAssesment(v)'>
+      {{i < v ? '&#9733;' : '&#9734;'}}
+    </button>
+  </ng-template>
+</div>
