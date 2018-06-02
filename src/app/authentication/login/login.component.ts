@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { NgRedux } from '@angular-redux/store';
-import { IChatState } from '../../models/IChatState';
-import { AUTHENTICATE } from '../../models/actions/actions';
+import { IChatState } from '../../store/chatState';
+import { AUTHENTICATE } from '../../store/actions';
 
 @Component({
   selector: 'app-login',

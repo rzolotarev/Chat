@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
-import { IChatState } from '../models/IChatState';
-import { AUTHENTICATE } from '../models/actions/actions';
+import { IChatState } from '../store/chatState';
+import { AUTHENTICATE } from '../store/actions';
 import { Observable } from 'rxjs';
 
 @Injectable({

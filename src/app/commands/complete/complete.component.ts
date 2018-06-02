@@ -7,7 +7,7 @@ import { MessageService } from '../../services/message.service';
   styleUrls: ['./complete.component.css']
 })
 export class CompleteComponent implements OnInit {
-    private title: string = 'Do tou want to close the conversation';
+    private title: string = 'Do you want to close the conversation';
     private answers: Array<string> = [];
 
     constructor(private messageService: MessageService) { }
@@ -20,6 +20,6 @@ export class CompleteComponent implements OnInit {
     }
 
     sendResponse(value: string) {
-      this.messageService.sendMessage(value);  
-    }
+      this.messageService.sendMessage(value);      
+    }    
 }

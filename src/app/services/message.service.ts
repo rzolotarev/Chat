@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Message } from '../models/message';
-import { NgRedux } from '@angular-redux/store';
-import { IChatState } from '../models/IChatState';
-import { ADD_MESSAGE, ADD_COMMAND } from '../models/actions/actions';
+import { NgRedux, select } from '@angular-redux/store';
+import { IChatState } from '../store/chatState';
+import { ADD_MESSAGE, ADD_COMMAND } from '../store/actions';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class MessageService {
     private readonly url: string = "https://demo-chat-server.on.ag/";
     private readonly messageEvent: string = "message";
     private readonly commandEvent: string = "command";
+    author: string;
 
     private socket: SocketIOClient.Socket = null;  
 
@@ -25,12 +27,13 @@ export class MessageService {
         this.ngRedux.dispatch({type: ADD_COMMAND, 
                     message: new Message(commandData.author, '', 
                     commandData.command.type, commandData.command.data)});
-        console.log(commandData.command.data);  
+        console.log(commandData.command);  
       });
     }
 
-    public sendMessage(currentMessage: string) {    
-      this.socket.emit(this.messageEvent, { author: 'Roman', message: currentMessage });      
+    public sendMessage(currentMessage: string) {        
+      this.author = this.ngRedux.getState().author;
+      this.socket.emit(this.messageEvent, { author: this.author, message: currentMessage });      
     }
 
     public sendCommand() {

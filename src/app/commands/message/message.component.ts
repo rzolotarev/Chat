@@ -1,0 +1,20 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-message',
+  templateUrl: './message.component.html',
+  styleUrls: ['./message.component.css']
+})
+export class MessageComponent implements OnInit {
+
+    messageText: string = '';
+
+    constructor() { }
+
+    ngOnInit() {
+    }
+
+    setData(data: string){
+      this.messageText = data;  
+    }
+}

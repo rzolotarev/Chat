@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Message } from '../models/message';
 import { MessageService } from '../services/message.service';
 import { NgRedux, select } from '@angular-redux/store';
-import { IChatState } from '../models/IChatState';
-import { ADD_MESSAGE, ADD_COMMAND } from '../models/actions/actions';
+import { IChatState } from '../store/chatState';
+import { ADD_MESSAGE, ADD_COMMAND } from '../store/actions';
 import { Observable } from 'rxjs';
 
 
@@ -13,22 +13,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-      @select() messages: Observable<Message>;
-      messageText: string;
+      @select() currentMessage: Observable<Message>;
+      author: string = '';      
 
       constructor(private ngRedux: NgRedux<IChatState> ,private messageService: MessageService){
       }
 
-      ngOnInit() {
+      async ngOnInit() {        
+        this.author = this.ngRedux.getState().author;
       }
     
-      public sendMessage(): void {      
-        this.messageService.sendMessage(this.messageText);
-        this.ngRedux.dispatch({type: ADD_MESSAGE, message: new Message('Roman', "message", this.messageText)});      
-      }
+      // async sendMessage() {           
+      //   this.messageService.sendMessage(this.messageText);
+      //   this.ngRedux.dispatch({type: ADD_MESSAGE, message: new Message(this.author, "message", this.messageText)});      
+      // }
     
-      public sendCommand(): void {
-        this.messageService.sendCommand();
-        this.ngRedux.dispatch({type: ADD_COMMAND, message: new Message('Roman', '', 'sendRandomCommand')}); 
+      async sendCommand() {        
+        this.messageService.sendCommand();     
       }
 }

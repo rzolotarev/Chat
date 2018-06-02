@@ -1,22 +1,23 @@
-<div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Username</span>
-    </div>
-    <input type="text" [(ngModel)]="username"
-          class="form-control" placeholder="Username" 
-          aria-label="Username" aria-describedby="basic-addon1">
-</div>
+<div class="row justify-content-md-center">
+    <div class="col col-md-auto">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Username</span>
+        </div>
+        <input type="text" [(ngModel)]="username"
+              class="form-control" placeholder="Username" 
+              aria-label="Username" aria-describedby="basic-addon1">
+      </div>
 
-<div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Password</span>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Password</span>
+        </div>
+        <input type="text" [(ngModel)]="password"
+              class="form-control" placeholder="Password" 
+              aria-label="Username" aria-describedby="basic-addon1">
     </div>
-    <input type="text" [(ngModel)]="password"
-          class="form-control" placeholder="Password" 
-          aria-label="Username" aria-describedby="basic-addon1">
+ 
+    <input type="button" class="btn btn-outline-success" (click)="login()" value="Login">
+  </div>
 </div>
-
-<div>
-    <input type="checkbox" checked="checked" name="remember"> Remember me
-</div>
-<input type="button" class="btn btn-outline-success" (click)="login()" value="Login">

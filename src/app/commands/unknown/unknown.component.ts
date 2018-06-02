@@ -12,4 +12,7 @@ export class UnknownComponent implements OnInit {
     ngOnInit() {
     }
     
+    setData(data: any) {
+    
+    }
 }
