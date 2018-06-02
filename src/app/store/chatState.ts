@@ -1,5 +1,5 @@
 import { Message } from "src/app/models/message";
-import { ADD_MESSAGE, REMOVE_MESSAGE, ADD_COMMAND, AUTHENTICATE } from '../store/actions';
+import { ADD_MESSAGE, LOGOUT, ADD_COMMAND, LOGIN } from '../store/actions';
 
 //TODO: I use IAppState. Of course on the beginig level I can avoid using redux, 
 //but when the chat getting larger and I will use a lot of views which are independent of each other and have access to the same data, 
@@ -23,8 +23,10 @@ export function rootReducer(state: IChatState, action) : IChatState {
         return Object.assign({}, state, { currentMessage: Object.assign({}, action.message)});
         case ADD_COMMAND:             
             return Object.assign({}, state, { currentMessage: Object.assign({}, action.message)});
-        case AUTHENTICATE: 
+        case LOGIN: 
             return Object.assign({}, state, { author: action.author, isAuthenticated: true });       
+        case LOGOUT: 
+            return Object.assign({}, state, { author: '', isAuthenticated: false }); 
     }
     return state;
 }

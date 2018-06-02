@@ -1,6 +1,11 @@
 <div class="row justify-content-md-center">
+    <div class="col col-md-1">
+        <h5>{{author | async}}</h5>
+    </div>
     <div class="col col-md-auto">
-      <span>{{author | async}}</span>
-      <span>chat</span>
-  </div>
+      <h5>chat</h5>      
+    </div>
+    <div class="col col-md-1">
+        <input class="btn btn-outline-secondary" type="button" value="Logout" (click)="logout()">
+    </div>
 </div>

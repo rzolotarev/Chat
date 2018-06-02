@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { select } from '@angular-redux/store';
+import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +11,17 @@ import { select } from '@angular-redux/store';
 })
 export class HeaderComponent implements OnInit {
 
-    @select() author;
+    @select() author: Observable<string>;
 
-    constructor() { }
+    constructor(private authService: AuthService, private router: Router) { }
 
     ngOnInit() {
-      
+
+    }
+
+    logout() {
+      this.authService.Logout();
+      this.router.navigate(['login']); 
     }
 
 }

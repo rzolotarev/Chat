@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
 import { IChatState } from '../store/chatState';
-import { AUTHENTICATE } from '../store/actions';
+import { LOGIN, LOGOUT } from '../store/actions';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,8 +16,12 @@ export class AuthService {
       return this.isAuthenticated;            
     }  
 
-    public TryToAuthenticate(username: string, password: string) :  Observable<boolean> {
-      this.ngRedux.dispatch({type: AUTHENTICATE, author: username});
+    public TryToLogin(username: string, password: string) :  Observable<boolean> {
+      this.ngRedux.dispatch({type: LOGIN, author: username});
       return this.IsAuthenticated();
+    }
+
+    public Logout(){
+      this.ngRedux.dispatch({type: LOGOUT});
     }
 }

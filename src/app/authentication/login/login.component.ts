@@ -3,7 +3,6 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { NgRedux } from '@angular-redux/store';
 import { IChatState } from '../../store/chatState';
-import { AUTHENTICATE } from '../../store/actions';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
     }
 
     login() {          
-      if(this.authService.TryToAuthenticate(this.username, this.password))           
+      if(this.authService.TryToLogin(this.username, this.password))           
         this.router.navigate(['']);            
       // message что невалидно        
     }

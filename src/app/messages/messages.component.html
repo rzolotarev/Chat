@@ -1,12 +1,16 @@
-    <div>
-        <b>{{ author }}</b>       
-        <app-command></app-command> 
-    </div>
-    <div class="row justify-content-md-center mt-3">
-        <div class="col col-md-auto">
-            <button class="btn btn-outline-secondary round-50" type="button" 
-                    (click)="sendCommand()">
-                <i class="fa fa-location-arrow"></i>
-            </button>         
+<div class="row vh-100 justify-content-md-center mt-3 align-items-center">
+    <div class="col col-md-auto">
+        <div>
+            <!-- <b>{{ author }}</b>        -->
+            <app-command></app-command> 
         </div>
     </div>
+</div>    
+<div class="row justify-content-md-center mt-3">
+    <div class="col col-md-auto">
+        <button class="btn btn-outline-secondary round-50" type="button" 
+                (click)="sendCommand()">
+            <i class="fa fa-location-arrow"></i>
+        </button>         
+    </div>
+</div>
