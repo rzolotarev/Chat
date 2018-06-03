@@ -1,5 +1,5 @@
 import { Message } from "src/app/models/message";
-import { ADD_MESSAGE, LOGOUT, ADD_COMMAND, LOGIN, RESPONSE_TO_COMMAND } from '../store/actions';
+import { ADD_MESSAGE, LOGOUT, ADD_COMMAND, LOGIN, RESPONSE_TO_COMMAND, REMOVE_ITEM } from '../store/actions';
 import { ContentItem } from "../models/contentItem";
 
 //TODO: I use IAppState. Of course on the beginig level I can avoid using redux, 
@@ -42,7 +42,11 @@ export function rootReducer(state: IChatState, action) : IChatState {
                                 }),
                                 ...state.contentItems.slice(index + 1)
                               ]
-            });            
+            });    
+        case REMOVE_ITEM:               
+            return Object.assign({}, state, {
+                        contentItems: state.contentItems.filter(ci => ci.id != action.id)
+                });    
         case LOGIN: 
             return Object.assign({}, state, { author: action.author, isAuthenticated: true });       
         case LOGOUT: 

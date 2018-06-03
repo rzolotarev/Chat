@@ -2,3 +2,7 @@
     width:400px;
     height:400px;
 }
+
+.round-50 {
+    border-radius: 50px;    
+}

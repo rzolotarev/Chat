@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Map } from '../../models/map';
 import { } from '@types/googlemaps';
+import { MessageService } from '../../services/message.service';
+import { UpdateScrollService } from '../../services/update-scroll.service';
 
 @Component({
   selector: 'app-map',
@@ -12,12 +14,20 @@ export class MapComponent {
     @ViewChild('gmap') gmapElement: any;
     private map: google.maps.Map;
     private mapData: Map = null;    
+    author: string;
+    id: string;
 
-    constructor() {
+    constructor(private messageService: MessageService, private updateScrollService: UpdateScrollService) {
     }    
 
+    ngAfterViewInit() {
+      this.updateScrollService.scroll.next(true);
+    }
+
     setData(data: any) {      
-      this.mapData = data.data; 
+      this.mapData = data.data;
+      this.author = data.author;
+      this.id = data.id; 
       var mapProp = {
         center: new google.maps.LatLng(this.mapData.lat, this.mapData.lng),
         zoom: 15,
@@ -29,5 +39,9 @@ export class MapComponent {
           map: this.map,
           title: 'You are here'
         });     
+    }
+
+    removeMap() {
+      this.messageService.removeItem(this.id);
     }
 }

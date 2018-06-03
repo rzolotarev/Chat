@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UpdateScrollService } from '../../services/update-scroll.service';
 
 @Component({
   selector: 'app-message',
@@ -10,9 +11,13 @@ export class MessageComponent implements OnInit {
     messageText: string = '';    
     author: string ="";
     isMine: boolean;
-    constructor() { }
+    constructor(private updateScrollService: UpdateScrollService) { }
 
     ngOnInit() {
+    }     
+
+    ngAfterViewInit() {
+      this.updateScrollService.scroll.next(true);
     }
 
     setData(data: any){

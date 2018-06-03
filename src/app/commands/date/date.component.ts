@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../services/message.service';
+import { UpdateScrollService } from '../../services/update-scroll.service';
 
 @Component({
   selector: 'app-date',
@@ -13,16 +14,23 @@ export class DateComponent implements OnInit {
     private date: Date = null;
     private dayButtons : Array<string> = [];
     private id: string = "";
-    constructor(private messageService : MessageService) { }
+    author: string = '';
 
+    constructor(private messageService : MessageService, private updateScrollService: UpdateScrollService) { }
+    
     ngOnInit() {
 
     }
 
+    ngAfterViewInit() {
+      this.updateScrollService.scroll.next(true);
+    }
+
     setData(data: any){
       this.date = new Date(data.data);
+      this.author = data.author
       this.id = data.id;
-      
+
       let startDay = this.date.getDay() - 1;    
 
       if(startDay >= this.months.length)

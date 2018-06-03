@@ -7,6 +7,7 @@ import { ADD_MESSAGE, ADD_COMMAND } from '../store/actions';
 import { Observable } from 'rxjs';
 import { ContentItem } from '../models/contentItem';
 import { MESSAGE } from '../models/commandTypes';
+import { UpdateScrollService } from '../services/update-scroll.service';
 
 @Component({
   selector: 'app-messages',
@@ -19,15 +20,18 @@ export class MessagesComponent implements OnInit {
       messageText: string = '';
       @ViewChild('scrolled') private myScrollContainer: ElementRef;
 
-      constructor(private ngRedux: NgRedux<IChatState> ,private messageService: MessageService){
+      constructor(private ngRedux: NgRedux<IChatState> ,private messageService: MessageService,
+                  private updateScrollService: UpdateScrollService){
+        this.updateScrollService.scroll.subscribe(() => this.scrollToBottom());
       }
 
       ngOnInit() {        
         this.author = this.ngRedux.getState().author;        
       }
     
-      ngAfterViewChecked(){
-        this.scrollToBottom();
+      onKey(event: any) {
+        if(event.which == 13)
+          this.sendMessage();
       }
 
       sendMessage() {           

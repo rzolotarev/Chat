@@ -1,7 +1,5 @@
-.grey-back {
-    background-color: lightgray;
-}
 
-.text-grey {
-    color: gray;
+.cursor-hand {
+    cursor: pointer; 
+    cursor: hand;
 }

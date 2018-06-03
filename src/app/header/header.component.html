@@ -1,12 +1,12 @@
-<!-- justify-content-md-center -->
-<div class="row">
-    <div class="col col-md-2 text-grey">
+<div class="row mt-3 mb-4">
+    <div class="col col-md-2 text-muted">
         <h5>{{author | async}}</h5>
     </div>
-    <div class="col col-md-9 text-center">
-      <h4>chat</h4>      
+    <div class="col col-md-9">
     </div>
-    <div class="col col-md-1">
-        <input class="btn btn-outline-secondary" type="button" value="Logout" (click)="logout()">
+    <div class="col col-md-1 cursor-hand">
+        <div (click)="logout()" class="text-muted">
+          <h5>Logout</h5>
+        </div>
     </div>
 </div>

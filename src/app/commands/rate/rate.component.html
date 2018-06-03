@@ -1,16 +1,17 @@
-<!-- justify-content-md-center -->
-<div class="row">
+<div class="row justify-content-md-center ">
     <div class="col text-right">
-      <h5>{{title}}</h5>
-    </div>
-    <div class="col-md-auto">
         <b>{{author}}</b>
     </div>  
 </div>
-<div class="row">
-    <div class="col text-right">
-      <rating [max]="5" [(ngModel)]="y" [customTemplate]="customeTemplate"></rating>
-      <b>(<i>Rate:</i> {{y}})</b>
+<div class="row justify-content-md-center ">  
+    <div class="col-md-auto">
+      <h5>{{title}}</h5>
+    </div>    
+</div>
+<div class="row justify-content-md-center">
+    <div class="col col-md-auto">
+      <rating [max]="max" [(ngModel)]="y" [customTemplate]="customeTemplate"></rating>
+      <!-- <b>(<i>Rate:</i> {{y}})</b> -->
       <ng-template #customeTemplate let-i="index" let-v="value">
         <button type="btn" class="btn btn-{{i < v ? 'warning' : 'default'}}" (click)='setAssesment(v)'>
           {{i < v ? '&#9733;' : '&#9734;'}}

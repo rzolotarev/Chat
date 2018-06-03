@@ -1,11 +1,23 @@
+
 <div class="row justify-content-md-center">
+    <div class="col text-right">
+        <b>{{author}}</b>
+    </div>
+</div>
+<div class="row justify-content-md-center">        
+    <div class="col-md-auto">
+        <h5>{{title}}</h5>
+    </div>            
+</div>
+<div class="row justify-content-md-center">    
     <div class="col col-md-auto">
-        <h4>{{title}}</h4>
-        
+        <div #gmap class="size-400"></div>
     </div>
 </div>
 <div class="row justify-content-md-center">
     <div class="col col-md-auto">
-        <div #gmap class="size-400"></div>
+        <button class="btn btn-outline-secondary round-50" type="button" 
+            (click)="removeMap()"><i class="fa fa-remove"></i>
+        </button>        
     </div>
 </div>

@@ -14,6 +14,10 @@
     height: 80vh;
 }
 
+.vh-75 {
+    height: 75vh;
+}
+
 .scroll {
     overflow: auto;
 }

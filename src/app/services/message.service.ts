@@ -3,7 +3,7 @@ import * as io from 'socket.io-client';
 import { Message } from '../models/message';
 import { NgRedux, select } from '@angular-redux/store';
 import { IChatState } from '../store/chatState';
-import { ADD_MESSAGE, ADD_COMMAND, RESPONSE_TO_COMMAND } from '../store/actions';
+import { ADD_MESSAGE, ADD_COMMAND, RESPONSE_TO_COMMAND, REMOVE_MESSAGE, REMOVE_ITEM } from '../store/actions';
 import { Observable } from 'rxjs/Observable';
 import { ContentItem } from '../models/contentItem';
 import { MESSAGE } from '../models/commandTypes';
@@ -53,5 +53,9 @@ export class MessageService {
 
     public sendCommand() {
       this.socket.emit(this.commandEvent);
+    }
+
+    public removeItem(id: string) {
+      this.ngRedux.dispatch({type: REMOVE_ITEM, id: id});        
     }
 }
