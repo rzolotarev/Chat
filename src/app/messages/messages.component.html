@@ -1,16 +1,19 @@
-<div class="row vh-100 justify-content-md-center mt-3 align-items-center">
-    <div class="col col-md-auto">
-        <div>
-            <!-- <b>{{ author }}</b>        -->
-            <app-command></app-command> 
+<div #scrolled class="row vh-80 scroll justify-content-md-center mt-3">
+    <div class="col">
+        <div *ngFor="let contentItem of contentItems | async">            
+            <app-command [contentItem]="contentItem"></app-command>
         </div>
     </div>
-</div>    
-<div class="row justify-content-md-center mt-3">
-    <div class="col col-md-auto">
-        <button class="btn btn-outline-secondary round-50" type="button" 
-                (click)="sendCommand()">
-            <i class="fa fa-location-arrow"></i>
-        </button>         
+</div>
+<div class="input-group mb-3 mt-3">
+    <input type="text" class="form-control" placeholder="Type a message" 
+           aria-describedby="basic-addon2" [(ngModel)]="messageText">
+    <div class="input-group-append">
+            <button class="btn btn-outline-secondary round-50" type="button" 
+                    (click)="sendMessage()"><i class="fa fa-send"></i>
+            </button>
     </div>
+    <button class="btn btn-outline-secondary round-50" type="button" 
+            (click)="sendCommand()"><i class="fa fa-location-arrow"></i>
+    </button> 
 </div>

@@ -19,6 +19,7 @@ import { AuthGuard } from './authentication/auth.guard';
 import { LoginComponent } from './authentication/login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { MessageComponent } from './commands/message/message.component';
+import { ResponseToCommandComponent } from './commands/response-to-command/response-to-command.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MessageComponent } from './commands/message/message.component';
     CompleteComponent,    
     LoginComponent,
     HeaderComponent,
-    MessageComponent
+    MessageComponent,
+    ResponseToCommandComponent
   ],
   imports: [
     RatingModule.forRoot(),
@@ -45,7 +47,8 @@ import { MessageComponent } from './commands/message/message.component';
     MapComponent,
     DateComponent,
     CompleteComponent, 
-    MessageComponent,   
+    MessageComponent,
+    ResponseToCommandComponent,   
     UnknownComponent
   ],
   bootstrap: [AppComponent]

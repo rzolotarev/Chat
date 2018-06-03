@@ -1,3 +1,7 @@
 .grey-back {
     background-color: lightgray;
 }
+
+.text-grey {
+    color: gray;
+}

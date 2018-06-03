@@ -7,14 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageComponent implements OnInit {
 
-    messageText: string = '';
-
+    messageText: string = '';    
+    author: string ="";
+    isMine: boolean;
     constructor() { }
 
     ngOnInit() {
     }
 
-    setData(data: string){
-      this.messageText = data;  
+    setData(data: any){
+      this.messageText = data.data;
+      this.author = data.author;
+      this.isMine = data.isMine;      
     }
 }

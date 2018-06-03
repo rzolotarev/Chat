@@ -7,7 +7,7 @@ import { } from '@types/googlemaps';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent {
     private title: string = "User location";
     @ViewChild('gmap') gmapElement: any;
     private map: google.maps.Map;
@@ -16,12 +16,8 @@ export class MapComponent implements OnInit {
     constructor() {
     }    
 
-    ngOnInit() {               
-      
-    }
-
-    setData(data: Map) {      
-      this.mapData = data; 
+    setData(data: any) {      
+      this.mapData = data.data; 
       var mapProp = {
         center: new google.maps.LatLng(this.mapData.lat, this.mapData.lng),
         zoom: 15,

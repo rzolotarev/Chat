@@ -11,8 +11,9 @@ export class RateComponent implements OnInit {
       private title: string = 'Please rate the conversation';
       private rate: Array<number> = [];
       private stars: Array<number> = [];
-      private chosenAssesment: number = 0;
-      y: number = 2;
+      private chosenAssesment: number = 0;      
+      private id: string;
+      initialValue: number = 0;
 
       constructor(private messageService: MessageService) { }
 
@@ -25,13 +26,14 @@ export class RateComponent implements OnInit {
       }
       
       setData(rate: any){
-        this.rate = rate;
+        this.rate = rate.data;
+        this.id = rate.id;
         for(let i = this.rate[0]; i <= this.rate[1]; i++)
           this.stars.push(i);      
       }
 
       setAssesment(value: number){
         this.chosenAssesment = value;
-        this.messageService.sendMessage(value.toString());  
-      }    
+        this.messageService.sendUserChoice(this.id, value.toString());  
+      }        
 }

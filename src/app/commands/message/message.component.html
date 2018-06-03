@@ -1,7 +1,18 @@
-<div class="row justify-content-md-center">
-    <div class="col col-md-auto">
-      <div>
-      {{messageText}}
+<div class="row">
+    <ng-template [ngIf]="isMine">
+      <div class="col-md-auto">
+          <b>{{author}}</b>
       </div>
-  </div>
+      <div class="col">      
+          {{messageText}}      
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="!isMine">
+        <div class="col text-right">      
+            {{messageText}}      
+        </div>
+        <div class="col-md-auto">
+            <b>{{author}}</b>
+        </div>        
+     </ng-template>     
 </div>

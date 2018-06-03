@@ -12,15 +12,17 @@ export class DateComponent implements OnInit {
     private months: Array<string> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
     private date: Date = null;
     private dayButtons : Array<string> = [];
-
+    private id: string = "";
     constructor(private messageService : MessageService) { }
 
     ngOnInit() {
 
     }
 
-    setData(data: string){
-      this.date = new Date(data);
+    setData(data: any){
+      this.date = new Date(data.data);
+      this.id = data.id;
+      
       let startDay = this.date.getDay() - 1;    
 
       if(startDay >= this.months.length)
@@ -30,9 +32,9 @@ export class DateComponent implements OnInit {
         let name = this.months[(startDay + i)%this.months.length];
         this.dayButtons.push(name);
       }      
-    }
+    }  
 
-    sendResponse(chosenDay: string){
-      this.messageService.sendMessage(chosenDay);
-    }
+    sendResponse(value: string) {
+      this.messageService.sendUserChoice(this.id, value);        
+    }    
 }
