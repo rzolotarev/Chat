@@ -6,6 +6,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
+P.S. don't forget run npm i
+
 ##Description
 
 Every message is a component. Base component 'app-command' is responsible for dynamically creating a new component. It takes a type of item (map, date, message...), read a component type from command-mapping-service and show it. If there is a need for a new command type, at first, you have to create a new component where all business logic and layout are put, secondly, add a new mapping record to command-mapping-service.
