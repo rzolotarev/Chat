@@ -38,7 +38,8 @@ export function rootReducer(state: IChatState, action) : IChatState {
                 contentItems: [...state.contentItems.slice(0, index),
                                   Object.assign({}, contentItem, {
                                       type: 'responseToCommand',
-                                      data: action.value                                      
+                                      data: action.value,
+                                      author: state.author                                    
                                 }),
                                 ...state.contentItems.slice(index + 1)
                               ]

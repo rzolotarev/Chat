@@ -1,5 +1,8 @@
-<div class="row justify-content-md-center">
-  <div class="col text-center mt-4">
-    <h5>{{data.data}}</h5>
-  </div>
+<div class="row mt-4" @appearing>
+    <div class="col-md-auto" >      
+      <b>{{response.author}}</b>        
+    </div>
+    <div class="col">
+        {{response.data}}
+    </div>    
 </div>

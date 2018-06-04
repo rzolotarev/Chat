@@ -16,23 +16,14 @@ export class MessageService {
 
     private readonly url: string = "https://demo-chat-server.on.ag/";
     private readonly messageEvent: string = "message";
-    private readonly commandEvent: string = "command";
-    author: string;
-    responseToCommand: ResponseToCommand;
-
+    private readonly commandEvent: string = "command";    
 
     private socket: SocketIOClient.Socket = null;  
 
     constructor(private ngRedux: NgRedux<IChatState>) { 
       this.socket = io(this.url);
-      this.socket.on(this.messageEvent, (data) => {
-        if(this.responseToCommand){
-          this.ngRedux.dispatch({type: RESPONSE_TO_COMMAND, id: this.responseToCommand.contentItemId, 
-                                value: `${this.author} ${this.responseToCommand.value}`});   
-          this.responseToCommand = null;     
-        } else {
-          this.ngRedux.dispatch({type: ADD_MESSAGE, contentItem: new ContentItem(data.author, MESSAGE, data.message)});        
-        }
+      this.socket.on(this.messageEvent, (data) => {        
+        this.ngRedux.dispatch({type: ADD_MESSAGE, contentItem: new ContentItem(data.author, MESSAGE, data.message)});        
       });
       this.socket.on(this.commandEvent, (commandData) => {
         this.ngRedux.dispatch({type: ADD_COMMAND, 
@@ -41,14 +32,14 @@ export class MessageService {
       });
     }
 
-    public sendUserChoice(id: string, value: string) {
-      this.responseToCommand = new ResponseToCommand(id, value);      
-      this.sendMessage(value);      
-    }    
+    public setUserChoice(id: string, value: string) {      
+      this.ngRedux.dispatch({type: RESPONSE_TO_COMMAND, id: id, 
+                            value: value});       
+    }
 
-    public sendMessage(currentMessage: string) {        
-      this.author = this.ngRedux.getState().author;
-      this.socket.emit(this.messageEvent, { author: this.author, message: currentMessage });           
+    public sendMessage(currentMessage: string) {              
+      this.socket.emit(this.messageEvent, { author: this.ngRedux.getState().author, 
+                                            message: currentMessage });           
     }
 
     public sendCommand() {

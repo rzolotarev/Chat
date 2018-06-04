@@ -38,7 +38,7 @@ import { ResponseToCommandComponent } from './commands/response-to-command/respo
   ],
   imports: [
     RatingModule.forRoot(),
-    BrowserModule, FormsModule, NgReduxModule,
+    BrowserModule, FormsModule, NgReduxModule,    
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

@@ -18,7 +18,7 @@ export class MessagesComponent implements OnInit {
       @select() contentItems: Observable<Array<ContentItem>>;
       author: string = '';      
       messageText: string = '';
-      @ViewChild('scrolled') private myScrollContainer: ElementRef;
+      @ViewChild('scrolled') private scrollContainer: ElementRef;
 
       constructor(private ngRedux: NgRedux<IChatState> ,private messageService: MessageService,
                   private updateScrollService: UpdateScrollService){
@@ -46,7 +46,7 @@ export class MessagesComponent implements OnInit {
 
       scrollToBottom(){
         try {
-            this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+            this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
         } catch(err) { }                 
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MessageService } from '../../services/message.service';
 @Component({
   selector: 'app-response-to-command',
   templateUrl: './response-to-command.component.html',
@@ -7,14 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResponseToCommandComponent implements OnInit {
 
-    data: any;
+    response: any;    
 
-    constructor() { }
+    constructor(private messageService: MessageService) { }
 
     ngOnInit() {
+      this.messageService.sendMessage(this.response.data);  
     }
 
-    setData(data: any){
-      this.data = data;  
+    setData(response: any){
+      this.response = response;  
     }
 }

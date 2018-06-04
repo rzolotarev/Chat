@@ -43,6 +43,6 @@ export class RateComponent implements OnInit {
 
       setAssesment(value: number){
         this.chosenAssesment = value;
-        this.messageService.sendUserChoice(this.id, value.toString());  
+        this.messageService.setUserChoice(this.id, value.toString());  
       }        
 }

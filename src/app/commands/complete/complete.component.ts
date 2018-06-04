@@ -28,6 +28,6 @@ export class CompleteComponent implements OnInit {
     }
 
     sendResponse(value: string) {
-      this.messageService.sendUserChoice(this.id, value);        
+      this.messageService.setUserChoice(this.id, value);        
     }    
 }
