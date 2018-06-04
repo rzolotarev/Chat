@@ -1,27 +1,15 @@
-# Client
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.5.
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+##Description
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Every message is a component. Abstract component 'app-command' is responsible for dynamically creating a new component. It takes a type of item (map, date, message...), read a component type from command-mapping-service and view it. If there is a need for a new command type, at first, you have to create a new component where all business logic and layout are put, secondly, add a new mapping record to command-mapping-service.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+This app uses redux approach. Of course on the beginig level we can avoid using redux, but when the chat will be getting larger, we will use a lot of views which are independent of each other and have access to the same data, 
+redux will be a great helper to keep the views in sync. It would be easy to add new feature for instance chatSoundsEnabled: false to a store and keep this value in one place.
+All items are stored in a chatState. If you want to change application state you have to add logic to rootReducer in chatState.

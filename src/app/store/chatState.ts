@@ -2,10 +2,6 @@ import { Message } from "src/app/models/message";
 import { ADD_MESSAGE, LOGOUT, ADD_COMMAND, LOGIN, RESPONSE_TO_COMMAND, REMOVE_ITEM } from '../store/actions';
 import { ContentItem } from "../models/contentItem";
 
-//TODO: I use IAppState. Of course on the beginig level I can avoid using redux, 
-//but when the chat getting larger and I will use a lot of views which are independent of each other and have access to the same data, 
-//redux will be a great helper to keep the views in sync.
-//Also It would be easy to add new feature for instance chatSoundsEnabled: false to a store and keep this value in one place.
 export interface IChatState {
     contentItems: Array<ContentItem>;    
     author: string;
